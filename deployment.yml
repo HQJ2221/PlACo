@@ -1,0 +1,426 @@
+############
+# Postgres #
+############
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:latest
+        env:
+        - name: POSTGRES_DB
+          value: mydatabase
+        - name: POSTGRES_USER
+          value: myuser
+        - name: POSTGRES_PASSWORD
+          value: mypassword
+        ports:
+        - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  ports:
+  - port: 5432
+    targetPort: 5432
+  selector:
+    app: postgres
+---
+# PersistentVolume for backups
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: postgres-backup-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
+  hostPath:
+    path: /mnt/postgres-backups
+---
+# PersistentVolumeClaim for backups
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-backup-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: standard
+---
+# CronJob for scheduled Postgres backups
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: postgres-backup
+spec:
+  schedule: "0 * * * *" # Run every hour at minute 0
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: postgres:latest
+            env:
+            - name: PGHOST
+              value: postgres
+            - name: PGDATABASE
+              value: mydatabase
+            - name: PGUSER
+              value: myuser
+            - name: PGPASSWORD
+              value: mypassword
+            - name: BACKUP_DIR
+              value: /backups
+            command:
+            - /bin/sh
+            - -c
+            - |
+              TIMESTAMP=$(date +%Y%m%d_%H%M%S)
+              pg_dump -Fc -f /backups/mydatabase-$TIMESTAMP.dump
+            volumeMounts:
+            - name: backup-storage
+              mountPath: /backups
+          restartPolicy: OnFailure
+          volumes:
+          - name: backup-storage
+            persistentVolumeClaim:
+              claimName: postgres-backup-pvc
+############
+# RabbitMQ #
+############
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:management
+        ports:
+        - containerPort: 5672
+        - containerPort: 15672
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: "user"
+        - name: RABBITMQ_DEFAULT_PASS
+          value: "password"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+spec:
+  ports:
+  - name: amqp
+    port: 5672
+    targetPort: 5672
+  - name: management
+    port: 15672
+    targetPort: 15672
+  selector:
+    app: rabbitmq
+---
+########
+# REST #
+########
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rest
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rest
+  template:
+    metadata:
+      labels:
+        app: rest
+    spec:
+      containers:
+      - name: rest
+        image: abcee/springboot-app:latest
+        env:
+        - name: SPRING_APPLICATION_NAME
+          value: demo
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://postgres:5432/mydatabase
+        - name: SPRING_DATASOURCE_USERNAME
+          value: myuser
+        - name: SPRING_DATASOURCE_PASSWORD
+          value: mypassword
+
+        - name: SPRING_JPA_HIBERNATE_DDL_AUTO
+          value: update
+
+        # RABBITMQ
+
+        - name: SPRING_RABBITMQ_HOST
+          value: rabbitmq
+
+        - name: SPRING_RABBITMQ_PORT
+          value: "5672"
+
+        - name: SPRING_RABBITMQ_USERNAME
+          value: user
+
+        - name: SPRING_RABBITMQ_PASSWORD
+          value: password
+
+        # FILE UPLOAD
+
+        - name: SPRING_SERVLET_MULTIPART_MAX_FILE_SIZE
+          value: 10000MB
+
+        - name: SPRING_SERVLET_MULTIPART_MAX_REQUEST_SIZE
+          value: 10000MB
+
+        - name: SPRING_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD
+          value: 100MB
+
+        # MAIL
+
+        - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_CONNECTIONTIMEOUT
+          value: "5000"
+
+        - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_TIMEOUT
+          value: "3000"
+
+        - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_WRITETIMEOUT
+          value: "5000"
+
+        - name: SPRING_MAIL_HOST
+          value: ""
+
+        - name: SPRING_MAIL_PORT
+          value: ""
+
+        - name: SPRING_MAIL_USERNAME
+          value: ""
+
+        - name: SPRING_MAIL_PASSWORD
+          value: ""
+
+        - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH
+          value: "true"
+
+        - name: SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE
+          value: "true"
+
+        - name: MAIL_FROM
+          value: "test@test.com"
+
+        # JUDGE0
+
+        - name: JUDGE0_BASE_URL
+          value: ""
+
+        - name: JUDGE0_AUTH_HEADER
+          value: ""
+
+        - name: JUDGE0_AUTH_TOKEN
+          value: ""
+
+        # OAUTH
+
+        - name: FRONTEND_URL
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_ID
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_SECRET
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_AUTHORIZATION_GRANT_TYPE
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_REDIRECT_URI
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_SCOPE
+          value: openid,profile,email
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_REGISTRATION_GITHUB_CLIENT_NAME
+          value: Github
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GITHUB_AUTHORIZATION_URI
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GITHUB_TOKEN_URI
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GITHUB_USER_INFO_URI
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GITHUB_JWK_SET_URI
+          value: 
+
+        - name: SPRING_SECURITY_OAUTH2_CLIENT_PROVIDER_GITHUB_USER_NAME_ATTRIBUTE
+          value: sub
+
+        # OSS
+
+        - name: ALIYUN_OSS_ACCESS_KEY_ID
+          value: 
+        - name: ALIYUN_OSS_ACCESS_KEY_SECRET
+          value: 
+
+        # OCR
+
+        - name: OCR_API_BASE_URL
+          value: https://api.mistral.ai/v1
+        - name: OCR_API_KEY
+          value: 
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rest
+spec:
+  ports:
+  - port: 8080
+    targetPort: 8080
+  selector:
+    app: rest
+---
+############
+# Frontend #
+############
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nextjs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nextjs-app
+  template:
+    metadata:
+      labels:
+        app: nextjs-app
+    spec:
+      containers:
+      - name: nextjs
+        image: abcee/nextjs-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nextjs-service
+spec:
+  ports:
+  - port: 3000
+    targetPort: 3000
+  selector:
+    app: nextjs-app
+---
+#########
+# Nginx #
+#########
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reverse-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reverse-proxy
+  template:
+    metadata:
+      labels:
+        app: reverse-proxy
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: nginx-config
+          mountPath: /etc/nginx/conf.d
+      volumes:
+      - name: nginx-config
+        configMap:
+          name: nginx-config
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reverse-proxy
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: reverse-proxy
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  default.conf: |
+    server {
+        listen 80;
+
+        location / {
+            proxy_pass http://nextjs-service:3000;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+        location /api/ {
+            proxy_pass http://rest:8080/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+    }
