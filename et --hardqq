@@ -1,0 +1,490 @@
+[33mcommit 935e9fa5d439c24d02410b8b161ea4f407f0ffa3[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfrontend/main[m[33m, [m[1;31morigin/frontend/main[m[33m)[m
+Author: zxxcynthia <327362307@qq.com>
+Date:   Wed May 21 11:52:08 2025 +0800
+
+    feat(admin/users): add batch user creation with CSV upload
+    
+    Added batch user creation functionality to the admin users page, allowing administrators to upload a CSV file to create multiple users via the `/users/batch` endpoint. Integrated with Mantine components for a consistent UI, including Tabs for single and batch user creation. Added role validation to ensure values match the backend Role enum (ROLE_USER, ROLE_ADMIN).
+    
+    - Implemented file upload with useFileDialog.
+
+[33mcommit f38d04eecf1cffe4643421fb0b927dd94577d899[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Tue May 20 00:52:40 2025 +0800
+
+    feat: 在调用/auth/me 的页面添加useAuthRedirect (hook)，未启用
+
+[33mcommit 4073a202c546bc148d29b78b17b990d546f3a9fe[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Tue May 20 00:51:54 2025 +0800
+
+    feat: 增加一个新hook（useAuthRedirect），用于处理超时登出页面导航问题（暂未使用）
+
+[33mcommit f39a32471b252a2e75ca228e7d0d6da29ba71f17[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Mon May 19 14:54:36 2025 +0800
+
+    fix: solve submission issue and change style of course card
+
+[33mcommit f5b2e5d53c7e9d3033fdf3b417431434f5ee1cf0[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Sun May 18 21:35:18 2025 +0800
+
+    fix: add needOCR to assignment-creation-modal according to backend modify
+
+[33mcommit 515ff66b1efa994a6e56f99721fe816ddf552746[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Sun May 18 18:37:56 2025 +0800
+
+    fix: delete an error file (Inx.)
+
+[33mcommit 2f7cf7cb0538e1bd83a728919c8e58629c1dff73[m
+Merge: f160405 4c8ed67
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun May 18 18:36:20 2025 +0800
+
+    Merge pull request #76 from sustech-cs304/frontend/instructor_create_assignment
+    
+    Frontend/instructor create assignment
+
+[33mcommit 4c8ed67d12c1e5b532bcd3a30b7e6976afb29360[m[33m ([m[1;31morigin/frontend/instructor_create_assignment[m[33m)[m
+Merge: 5e69ba2 f160405
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Sun May 18 18:33:44 2025 +0800
+
+    fix: resolve conflicts to frontend/main
+
+[33mcommit f160405a77226b937548e4f0729a1346d0d6ebde[m
+Merge: 97b5e51 fbd7579
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun May 18 17:53:07 2025 +0800
+
+    Merge pull request #79 from sustech-cs304/frontend/file-review
+    
+    add file preview functionality with support for MD and TXT files  - Implemented a new file preview page to display file contents - Added support for previewing MD and TXT file types using <pre> tag - Other file types (e.g., PDF, DOCX, PPTX) are not yet supported  - Updated routing to navigate to /dashboard/courses/[courseId]/assignments/[assignmentId]/preview/[fileId]
+
+[33mcommit 97b5e5186f1600653436c49bbd17d434299f7710[m
+Merge: 99f0f73 06c1335
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun May 18 17:51:31 2025 +0800
+
+    Merge pull request #77 from sustech-cs304/frontend/refactor-interface
+    
+    refactor: all interfaces export in @/app/interface.tsx
+
+[33mcommit 06c1335497c024a091e7daf93b7e56326b262364[m[33m ([m[1;31morigin/frontend/refactor-interface[m[33m)[m
+Merge: 632f46e 2fb77e6
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun May 18 17:50:32 2025 +0800
+
+    Merge pull request #78 from sustech-cs304/frontend/feat/student-submit-page
+    
+    feat: create student assignment page to show assignment info, submission and score
+
+[33mcommit 2fb77e60dcde5ce152f2cb40c72f470d35ea3ea2[m[33m ([m[1;31morigin/frontend/feat/student-submit-page[m[33m)[m
+Merge: 70ef5f3 632f46e
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Fri May 9 19:59:56 2025 +0800
+
+    Merge branch 'frontend/refactor-interface' into frontend/feat/student-submit-page
+
+[33mcommit 70ef5f39a2c2c95eb8defafcbf022a259f848c8d[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Fri May 9 19:57:26 2025 +0800
+
+    feat: whole submission detail page and add global.tsx as global constants.
+
+[33mcommit 468e0316442ae7095369430b9d1e7aa2e7da38ab[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Wed May 7 09:59:27 2025 +0800
+
+    feat: display all submissions of code tasks
+
+[33mcommit fbd7579f3c566c55d3d174cafb2f8395837bb70c[m[33m ([m[1;31morigin/frontend/file-review[m[33m, [m[1;32mfrontend/file-review[m[33m)[m
+Author: zxx3312 <zxx3312@users.noreply.github.com>
+Date:   Wed May 7 00:01:52 2025 +0000
+
+    Prettified Code!
+
+[33mcommit 2bbc8bb97459ff83f990bb9437d98204208e456c[m
+Author: zxxcynthia <327362307@qq.com>
+Date:   Wed May 7 07:57:50 2025 +0800
+
+    feat: add file preview functionality with support for MD and TXT files
+    
+    - Implemented a new file preview page to display file contents
+    - Added support for previewing MD and TXT file types using <pre> tag
+    - Other file types (e.g., PDF, DOCX, PPTX) are not yet supported
+    - Updated routing to navigate to /dashboard/courses/[courseId]/assignments/[assignmentId]/preview/[fileId]
+
+[33mcommit b6f615e4972be69adcd9b8f83cb2268583a7e3cc[m
+Merge: 06772c9 99f0f73
+Author: zxxcynthia <327362307@qq.com>
+Date:   Tue May 6 22:56:10 2025 +0800
+
+    Merge branch 'frontend/main' of https://github.com/sustech-cs304/team-project-25spring-68 into frontend/main
+
+[33mcommit 30ffd0eee93e68a1c8b51e7512e8539e370c5a94[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Tue May 6 01:59:07 2025 +0800
+
+    fix: error when student check latest submission; UI issues of instructor
+
+[33mcommit 6037d00f10bd4e3b96b0bd02531826533fb5e5c2[m
+Author: HQJ2221 <HQJ2221@users.noreply.github.com>
+Date:   Wed Apr 30 10:27:11 2025 +0000
+
+    Prettified Code!
+
+[33mcommit 64fec44f4857b13e23fc21018751b931edbdaa8f[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Wed Apr 30 18:25:46 2025 +0800
+
+    feat: create student assignment page to show assignment info, submission and score
+
+[33mcommit 632f46e7a68aae9aacbb151183c41d1cb5c6d1d0[m
+Author: HQJ2221 <HQJ2221@users.noreply.github.com>
+Date:   Wed Apr 30 08:36:37 2025 +0000
+
+    Prettified Code!
+
+[33mcommit 55dc67544e4933269bde7b6fa091876e1ee9bc7f[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Wed Apr 30 16:34:16 2025 +0800
+
+    refactor: all interfaces export in @/app/interface.tsx
+
+[33mcommit 99f0f73360b4b34a724431735538a2f5439b4ea9[m
+Merge: fa81d96 8bc81ba
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Mon Apr 28 20:04:23 2025 +0800
+
+    Merge pull request #75 from sustech-cs304/frontend/fix/display-submission-issue
+    
+    Frontend/fix/display submission issue
+
+[33mcommit 8bc81ba716f4bd2a95653f6dc39f1834a09f4062[m[33m ([m[1;31morigin/frontend/fix/display-submission-issue[m[33m)[m
+Author: HQJ2221 <HQJ2221@users.noreply.github.com>
+Date:   Mon Apr 28 12:03:55 2025 +0000
+
+    Prettified Code!
+
+[33mcommit 91d76765298f46232af696c4d548d898d2987747[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Mon Apr 28 20:01:31 2025 +0800
+
+    fix: student users can create submissions
+
+[33mcommit b076d2705baa06e9488fbfc60d30c2cbd83d5ce9[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Mon Apr 28 19:57:34 2025 +0800
+
+    fix: student users can create submissions
+
+[33mcommit fa81d96e64f59b253d293fd08b8ee9ed4249fdda[m
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun Apr 27 22:11:20 2025 +0800
+
+    feat: display assignment documents in both INSTRUCTOR and STUDENT (#74)
+    
+    feat: add delete docs in assignment-instructor.tsx
+    
+    * fix: instructor can visit students submission and score
+    
+    * feat: add button for instructor publishing scores
+    
+    ---------
+    
+    Co-authored-by: HQJ2221 <HQJ2221@users.noreply.github.com>
+
+[33mcommit 8546409330e94db570d1584aaef00b7b7ba67513[m
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun Apr 27 21:41:52 2025 +0800
+
+    Frontend/feat/instructor grading (#73)
+    
+    * feat: implement UI for instructors to grade submissions
+    
+    * fix: show true submission for instructors, and improve layer of navbar(assignments)
+    
+    * fix: solve role data error in 'assignment-client.tsx'; routing problems in 'assignments-details.tsx'
+    
+    ---------
+    
+    Co-authored-by: HQJ2221 <HQJ2221@users.noreply.github.com>
+    Co-authored-by: fest6 <174621678+fest6@users.noreply.github.com>
+
+[33mcommit 4cbe4ec2f30eeffea73d040feb417bd61462497a[m
+Author: Steven-He <142069310+HQJ2221@users.noreply.github.com>
+Date:   Sun Apr 27 20:50:17 2025 +0800
+
+    fix: delete Navbar on dashboard and move to Header (#72)
+    
+    * feat: offer different UI for instructors and students in a course
+    
+    * fix: correct error when switching from one assignment to another, ensure the navlink have no error when routing
+    
+    ---------
+    
+    Co-authored-by: HQJ2221 <HQJ2221@users.noreply.github.com>
+
+[33mcommit 5e69ba21c01a9edd460725dfad7e3afa2aae1e59[m
+Author: zxxcynthia <327362307@qq.com>
+Date:   Sat Apr 26 17:16:55 2025 +0800
+
+    feat: Implement CreateAssignment component with optional file uploads
+    
+    - Added CreateAssignment component using useFileDialog for file selection, mirroring AssignmentSubmission logic.
+    - Supported optional file uploads with /files and /assignment-files endpoints.
+
+[33mcommit 06772c9cfa092f2aafa4b39882e50e205b6ae3d2[m
+Merge: 8e3bcde 8da8a73
+Author: zxxcynthia <327362307@qq.com>
+Date:   Sat Apr 26 10:53:46 2025 +0800
+
+    Merge branch 'frontend/main' of https://github.com/sustech-cs304/team-project-25spring-68 into frontend/main
+
+[33mcommit b583552865019ce5c4e67c51ddf14e48194836ab[m[33m ([m[1;31morigin/frontend/feat/instructor-grading[m[33m, [m[1;32mfrontend/feat/instructor-grading[m[33m)[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Sat Apr 26 09:18:38 2025 +0800
+
+    fix: solve role data error in 'assignment-client.tsx'; routing problems in 'assignments-details.tsx'
+
+[33mcommit 030430f2c1f28685dc6798fe3b9a77a8b05d338b[m
+Merge: 2762517 3e535f6
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Thu Apr 24 23:00:31 2025 +0800
+
+    fix: show true submission for instructors, and improve layer of navbar(assignments)
+
+[33mcommit 276251796d77020d46532620946f57a048f52f3e[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Thu Apr 24 22:53:16 2025 +0800
+
+    fix: show true submission for instructors, and improve layer of navbar(assignments)
+
+[33mcommit 3e535f6e6e03f4c8bcdc992af1d8fd81d6c57943[m
+Author: HQJ2221 <HQJ2221@users.noreply.github.com>
+Date:   Wed Apr 23 20:20:50 2025 +0000
+
+    Prettified Code!
+
+[33mcommit 0a12951b2e5dcfb264901604d838b6e586280480[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Thu Apr 24 04:17:36 2025 +0800
+
+    feat: implement UI for instructors to grade submissions
+
+[33mcommit 63ae9907f1bd516f9571f5823f6c2ef664483239[m[33m ([m[1;31morigin/frontend/temp/debug-modify-assignment[m[33m, [m[1;32mfrontend/temp/debug-modify-assignment[m[33m)[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Wed Apr 23 23:16:16 2025 +0800
+
+    FIXME: error when instructor submit a form to modify assignment
+
+[33mcommit b96ab84edfda6b64bc364e296c4c6211d832646a[m[33m ([m[1;31morigin/frontend/feat/specific-role-UI[m[33m, [m[1;32mfrontend/feat/specific-role-UI[m[33m)[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Sun Apr 20 17:21:56 2025 +0800
+
+    fix: correct error when switching from one assignment to another, ensure the navlink have no error when routing
+
+[33mcommit 0ccce28ab42a813fd93047622081dc3d5c448897[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Thu Apr 17 18:06:26 2025 +0800
+
+    feat: offer different UI for instructors and students in a course
+
+[33mcommit 674cbd6c99a866c478947d528f69f14c4e755d80[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Thu Apr 17 18:03:47 2025 +0800
+
+    fix: delete Navbar on dashboard and move to Header
+
+[33mcommit 8da8a73be4fe250c8207a893aeba3590e856a8be[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 18:58:22 2025 +0800
+
+    fix: move /courses under /dashboard and fix all the links bugs (#70)
+    
+    * fix: move /courses under /dashboard and fix all the links bugs
+    
+    ---------
+    
+    Co-authored-by: fest6 <fest6@users.noreply.github.com>
+
+[33mcommit 138c1d039d55615a43859c0a4b085be0b550a443[m[33m ([m[1;31morigin/frontend/fix/homepage[m[33m, [m[1;32mfrontend/fix/homepage[m[33m)[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 09:19:24 2025 +0800
+
+    fix(admin/courses): correct import (#69)
+
+[33mcommit 57eddcacb2589e080b97d0f2f2a61a528fe10fdb[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 07:18:57 2025 +0800
+
+    fix(schedule): replace tabler icons with lucide (#68)
+
+[33mcommit c60161c0332cd5fa582af57f5ef57797d3ac0b80[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 07:01:42 2025 +0800
+
+    fix: delete register page and cancel router to reg page in login page (#67)
+    
+    Co-authored-by: steven <12212131@mail.sustech.edu.cn>
+
+[33mcommit 8d3d1b31e536e7e7bc92e8fb8a17df0915bc341e[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 06:59:31 2025 +0800
+
+    fix: optimize UI and modify schedule.tsx as a hash component of dashboard (#66)
+    
+    * fix: optimize UI and modify schedule.tsx as a hash component of dashboard(instead of a new page)
+    
+    ---------
+    
+    Co-authored-by: steven <12212131@mail.sustech.edu.cn>
+
+[33mcommit 03f4836ced642c01859c7d1d8698266d9573ea92[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Apr 16 06:45:36 2025 +0800
+
+    feat(courses): add assignment and submission pages (#65)
+    
+    * feat(courses): add assignments details
+    
+    * feat(assignments): add assignment submission
+    
+    * feat(submissions): add submission details page
+
+[33mcommit 8e3bcde36029c0f602199768413f8ffa4c6bc7a8[m
+Author: zxxcynthia <327362307@qq.com>
+Date:   Tue Apr 15 22:50:40 2025 +0800
+
+    fix: delete error sentence
+
+[33mcommit 5a9e197f70cce99acd5bf3e0b048b18ffe98a217[m
+Author: Cynthia <152937194+zxx3312@users.noreply.github.com>
+Date:   Mon Apr 14 21:42:49 2025 +0800
+
+    feat: Implement student schedule with calendar and assignment deadlines (issue #34) (#48)
+    
+    - Added a student-facing schedule page that:
+    - Displays a visual calendar highlighting assignment deadlines (DDLs) in red for easy time management.
+    - Lists assignments grouped by due date, showing course name and title, supporting multiple assignments per day.
+
+[33mcommit 92b302817b107cc9ba71065ee03fc3b41b9545a9[m
+Author: Cynthia <152937194+zxx3312@users.noreply.github.com>
+Date:   Mon Apr 14 21:40:31 2025 +0800
+
+    feat(admin/courses): 系统管理员创建课程 (#47)
+    
+    * feat: implement course creation functionality with instructor and student assignment
+    
+    - Added CourseCreation component at app/admin/courses/new-course/page.tsx to enable course creation.
+    - Integrated course creation with POST /courses API endpoint to save course details.
+    - Implemented instructor and student assignment via POST /course-users API, supporting INSTRUCTOR and STUDENT roles.
+    - Configured navigation from CoursesPage (app/admin/courses/page.tsx) to /admin/courses/new-course and back to /admin/courses upon completion.
+
+[33mcommit 91a538a0b5120157748373c45e0bf4f5561ec2e1[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Fri Apr 11 19:48:20 2025 +0800
+
+    chore(workflow): fix glob pattern (#49)
+
+[33mcommit ea1535dbe46f6c3101eee9b6c13c316ecd2df398[m[33m ([m[1;32mfrontend/feature/user-course-page[m[33m)[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Fri Apr 11 14:56:18 2025 +0800
+
+    feat(dashboard): add courseCard in user dashboard (#45)
+    
+    * feature: add courseCard in user dashboard
+    
+    ---------
+    
+    Co-authored-by: steven <12212131@mail.sustech.edu.cn>
+
+[33mcommit 20a5c7dfc154c994c975f6442a907cbcd72b4a30[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Fri Apr 11 00:10:21 2025 +0800
+
+    feat(admin): add course and course members management (#44)
+
+[33mcommit b359ed99936d04f2a83bbd8c6acc2696d157f637[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Thu Apr 10 23:56:37 2025 +0800
+
+    chore(workflow): fix code formatting (#46)
+
+[33mcommit 8b59628a7ed4a9aa0c9c251d1309b5b6e5a0521c[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Thu Apr 10 23:38:20 2025 +0800
+
+    feat(admin): add user management page (#42)
+
+[33mcommit f9c03f5f41818e1bf54a903000a01f5d226831ce[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Thu Apr 10 23:36:22 2025 +0800
+
+    chore(workflow): add workflow for code formatting (#43)
+
+[33mcommit 7fb374f47b9e1252115fe0e19f6e71df0c54d572[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Mon Mar 31 14:55:21 2025 +0800
+
+    style: format all .tsx files using Prettier
+
+[33mcommit 833211429b1fd9a21cb6e4f2dd37ae28933a202b[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Sun Mar 30 10:05:21 2025 +0800
+
+    feat(courses, assignments): add course and assignment details pages
+
+[33mcommit 1c200bd2a9d43d4d9d6025f3db31b998d433de98[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Tue Mar 25 16:52:56 2025 +0800
+
+    refactor(admin): extract components and move AppShell to layout
+
+[33mcommit a1ffa77deeeccaa74adb0e3766acc59408caf084[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Tue Mar 25 16:15:03 2025 +0800
+
+    refactor(auth/login, auth/register): replace <a> tags with <Link> components for navigation
+
+[33mcommit 13cf160d9b1d4b7c857b09aaeec35f2f6184db22[m
+Author: steven <12212131@mail.sustech.edu.cn>
+Date:   Mon Mar 24 22:53:43 2025 +0800
+
+    U: login page; C: register page, admin main page.
+
+[33mcommit 627d4aff091ade7cee80375b9d689090bdd8ac8f[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Thu Mar 20 18:31:34 2025 +0800
+
+    feat(courses): add course management page
+    
+    - Implemented a course management page with functionality to fetch, create, edit, and delete courses from the API.
+
+[33mcommit 33e27b509a5a9cd68f6898bcfb42dae6eba48df5[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Thu Mar 20 14:53:31 2025 +0800
+
+    feat(mantine): integrate Mantine UI library
+    
+    - Added MantineProvider, ColorSchemeScript and styles imports to the app/layout.tsx file
+    - Modified package.json and package-lock.json to add Mantine hooks and core
+    - Updated postcss configuration for Mantine styling support
+
+[33mcommit 965104ab70e66bc9d6a09fbf7b8281a2b3548581[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Mar 19 18:28:34 2025 +0800
+
+    feat(auth): add login page and dashboard page
+    
+    - Created a new login page at app/auth/login/page.tsx
+    - Added an example dashboard page at app/dashboard/page.tsx
+
+[33mcommit 8c00221f40c4abb67630c29c0293d620018aa8a2[m
+Author: fest6 <174621678+fest6@users.noreply.github.com>
+Date:   Wed Mar 19 17:02:18 2025 +0800
+
+    Initial commit
