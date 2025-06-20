@@ -9,9 +9,7 @@ EN | [ZH](UserDocument-zh.md)
   - [Users](#Users)
     - [Instructor](#Course-Intructor)
     - [Student](#Course-Student)
-  
   - [Administrater](#Administrater)
-  
 - [Contributing](#Contributing)
 - [License](#License)
 
