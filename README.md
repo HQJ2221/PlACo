@@ -20,13 +20,13 @@ Number of dependencies:
 
 ## Documentation
 
-[用户文档](https://github.com/sustech-cs304/team-project-25spring-68/blob/documentation/UserDocument/UserDocument-zh.md)
+[用户文档](https://github.com/HQJ2221/PlACo/blob/main/UserDocument/UserDocument-zh.md)
 
 **开发文档：**
 
-[后端文档](https://github.com/sustech-cs304/team-project-25spring-68/blob/documentation/DevDocument_backend.md)
+[后端文档](https://github.com/HQJ2221/PlACo/blob/main/DevDocument_backend.md)
 
-[前端文档](https://github.com/sustech-cs304/team-project-25spring-68/blob/documentation/DevDocument_frontend.md)
+[前端文档](https://github.com/HQJ2221/PlACo/blob/main/DevDocument_frontend.md)
 
 ## Tests
 
@@ -50,7 +50,7 @@ Mocking 技术: 通过 when(...).thenReturn(...) 配置模拟对象的返回行�
 
 ![alt text](content-1.png)
 
-[测试源代码](https://github.com/sustech-cs304/team-project-25spring-68/tree/backend/main/src/test/java/com/example/restservice)
+[测试源代码](https://github.com/HQJ2221/PlACo/tree/backend/main/src/test/java/com/example/restservice)
 
 ## Build
 
@@ -58,15 +58,15 @@ Technology/Tools/Frameworks: 使用了 Spring Boot 框架作为主要开发框�
 
 前后端自动构建过程使用GitHub Actions构建workflow，编译打包为Docker镜像并push到Docker Hub。
 
-[前端 Dockerfile](https://github.com/sustech-cs304/team-project-25spring-68/blob/frontend/release/Dockerfile)
+[前端 Dockerfile](https://github.com/HQJ2221/PlACo/blob/frontend/release/Dockerfile)
 
-[后端 Dockerfile](https://github.com/sustech-cs304/team-project-25spring-68/blob/backend/release/Dockerfile)
+[后端 Dockerfile](https://github.com/HQJ2221/PlACo/blob/backend/release/Dockerfile)
 
 ## Deployment
 
 使用Docker, Kubernetes进行容器化部署，管理负载均衡和数据库等多个容器。
 
-[k8s deployment.yml](https://github.com/sustech-cs304/team-project-25spring-68/blob/documentation/deployment.yml)
+[k8s deployment.yml](https://github.com/HQJ2221/PlACo/blob/documentation/deployment.yml)
 
 部署截图：
 
