@@ -1,0 +1,57 @@
+### 登录
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "username": "user",
+  "password": "password"
+}
+
+### 上传文件 - 测试文本文件
+POST http://localhost:8080/files
+Content-Type: multipart/form-data; boundary=----1
+
+------1
+Content-Disposition: form-data; name="file"; filename="test_image.jpg"
+
+< E:\\Software_Engineering\\Project_GitHub_Classroom\\OCR_server\\test_image.jpg
+------1--
+
+### 上传文件2 - 测试文本文件
+POST http://localhost:8080/files
+Content-Type: multipart/form-data; boundary=----1
+
+------1
+Content-Disposition: form-data; name="file"; filename="test_image.jpg"
+
+< E:\\Software_Engineering\\Project_GitHub_Classroom\\OCR_server\\2-5.pdf
+------1--
+
+### 上传submission-files
+POST http://localhost:8080/submission-files
+Content-Type: application/json
+
+{
+  "id": 1,
+  "submission": {
+    "id": 1
+  },
+  "file": {
+    "id": 652
+  }
+}
+
+### 获取文件
+GET http://localhost:8080/files/802
+
+### 获取所有文件
+
+GET http://localhost:8080/files
+
+### 删除文件
+
+DELETE http://localhost:8080/files/803
+
+### 获取日志
+
+GET http://localhost:8080/logs/user/1

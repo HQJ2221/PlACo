@@ -1,0 +1,14 @@
+= API Documentation
+
+== Assignments
+
+=== PUT Assignment
+
+==== Request Body
+include::{snippets}/assignments/put/request-body.adoc[]
+
+==== HTTP Response
+include::{snippets}/assignments/put/http-response.adoc[]
+
+==== Response Body
+include::{snippets}/assignments/put/response-body.adoc[]

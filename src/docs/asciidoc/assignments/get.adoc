@@ -1,0 +1,15 @@
+= API Documentation
+
+== Assignments
+
+=== GET Assignment
+
+==== Path Parameters
+include::{snippets}/assignments/get/path-parameters.adoc[]
+
+==== HTTP Response
+include::{snippets}/assignments/get/http-response.adoc[]
+
+==== Response Body
+include::{snippets}/assignments/get/response-body.adoc[]
+include::{snippets}/assignments/get/response-fields.adoc[]

@@ -1,0 +1,14 @@
+package com.example.restservice.repository;
+
+import com.example.restservice.model.Assignment;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.util.List;
+
+public interface AssignmentRepository extends JpaRepository<Assignment, Long>  {
+    List<Assignment> findByCourse_Id(Long courseId);
+
+    long getAssignmentById(Long id);
+
+    List<Assignment> findByUser_Id(Long userId);
+}
