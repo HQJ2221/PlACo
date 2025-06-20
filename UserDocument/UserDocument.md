@@ -7,8 +7,8 @@ EN | [ZH](UserDocument-zh.md)
 - [Usages](#Usages)
   - [Login](#Login)
   - [Users](#Users)
-    - [Instructor](#Course Intructor)
-    - [Student](#Course Student)
+    - [Instructor](#Course-Intructor)
+    - [Student](#Course-Student)
   
   - [Administrater](#Administrater)
   
