@@ -68,6 +68,9 @@ Technology/Tools/Frameworks: 使用了 Spring Boot 框架作为主要开发框�
 
 [k8s deployment.yml](https://github.com/HQJ2221/PlACo/blob/documentation/deployment.yml)
 
+
+⚠ 注意！本仓库为项目开发者之一整理最终release版本，仅作为参考，实际开发环境请参考 [sustech-cs304/team-project-25spring-68](https://github.com/sustech-cs304/team-project-25spring-68)
+
 部署截图：
 
 ![image](https://github.com/user-attachments/assets/61b3c09a-182f-4898-b125-a8d3765db8bb)
